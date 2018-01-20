@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+/* @import '~antd/dist/antd.less'; */
+
+/* Fighting against antd */
+
+h1, h2 {
+  color: inherit;
+}
+
+/* color 1 '#69d2e7'; secondaryColor */
+/* color 2 '#a7dbd8'; */
+/* color 3 '#e5e5e5'; softColor */
+/* color 4 '#f38630'; */
+/* color 5 '#fa6900'; primaryColor */
