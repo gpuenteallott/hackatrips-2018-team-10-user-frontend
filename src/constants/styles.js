@@ -16,6 +16,7 @@ export const flexColumn = { display: 'flex', flexDirection: 'column' };
 export const standardPadding = { padding: '0.5rem' };
 export const standardMargin = { margin: '0.5rem' };
 export const textCentered = { textAlign: 'center' };
+export const centerViaMargin = { margin: '0 auto' };
 
 export const bottomCentered = { position: 'absolute', bottom: '1rem' };
 export const arrowButton = { fontSize: '3rem', color: '#fff' };
@@ -23,6 +24,8 @@ export const arrowButton = { fontSize: '3rem', color: '#fff' };
 export const textBodySize = { fontSize: '1rem' };
 export const subheadlineSize = { fontSize: '1.5rem' };
 export const headlineSize = { fontSize: '2rem' };
+
+export const logo = { color: accentFontColor, fontStyle: 'italic' };
 
 export const primaryBgColor = { backgroundColor: primaryColor };
 export const secondaryBgColor = { backgroundColor: secondaryColor };

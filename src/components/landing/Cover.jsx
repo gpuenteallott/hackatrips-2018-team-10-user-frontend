@@ -15,6 +15,7 @@ import {
     bottomCentered,
     arrowButton,
     headlineSize,
+    logo,
 } from '../../constants/styles';
 
 import COMPANY_NAME from '../../constants/companyName';
@@ -32,7 +33,7 @@ const Cover = props => (
 
 
         <div style={{ ...flexColumn }}>
-            <h1 style={{ ...standardPadding, ...headlineSize }}>
+            <h1 style={{ ...standardPadding, ...headlineSize, ...logo }}>
                 {COMPANY_NAME}
             </h1>
 
