@@ -12,6 +12,7 @@ import {
     flexGrow,
     standardPadding,
     textCentered,
+    centerViaMargin,
 } from '../../constants/styles';
 import { LANDING } from '../../constants/pages';
 
@@ -21,20 +22,32 @@ export default props => (
 
         <div style={{ ...flexCenter, ...flexColumn, ...flexGrow() }}>
             <div style={{ ...standardPadding, maxWidth: '300px' }}>
+                <div
+                    style={{
+                        ...centerViaMargin,
+                        height: '6rem',
+                        width: '6rem',
+                        backgroundSize: 'contain',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundImage: "url('/travelbid-logo.png')"
+                    }}
+                />
+
                 <h2 style={{ ...standardMargin, marginBottom: '3rem', ...textCentered }}>
-                    Success!
+                    Éxito!
                 </h2>
 
                 <div style={{ ...standardMargin }}>
-                    <p>Your booking is complete! We'll get to work to save you money now.</p>
-                    <p>You'll receive an email 2 days before your trip with the hotel details.</p>
+                    <p>Reserva completada! Ahora nos ponemos a trabjar para ahorrarte dinero.</p>
+                    <p>Recibirás un email 2 días antes de tu viaje con los detalles finales del hotel.</p>
                 </div>
 
                 <div style={{ ...standardMargin, marginTop: '2rem', ...textCentered }}>
                 <Button
                     onClick={() => props.onGoToView(LANDING)}
                 >
-                    Done
+                    Terminar
                 </Button>
                 </div>
             </div>

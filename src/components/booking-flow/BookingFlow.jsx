@@ -71,6 +71,10 @@ class BookingFlow extends Component {
         return !hasErrors;
     }
 
+    // componentDidMount() {
+    //     this.props.onGoToView(BOOKING_CONFIRMATION); // @TODO delete
+    // }
+
     handleSubmit = (event) => {
         event.preventDefault();
 
@@ -110,6 +114,7 @@ class BookingFlow extends Component {
                             ...state,
                             bookingSubmitting: false,
                         }));
+                        this.props.onGoToView(BOOKING_CONFIRMATION);
                     }
                 },
                 (error) => {
@@ -117,7 +122,7 @@ class BookingFlow extends Component {
                     this.setState(state => ({
                         ...state,
                         bookingErrors: [
-                            { message: "There's been an error." },
+                            { message: "Oh no! Error!" },
                         ],
                     }));
                 },
@@ -186,7 +191,7 @@ class BookingFlow extends Component {
             })))
             .catch((error) => {
                 console.error(error);
-                this.setState(state => ({ ...state, hotelsError: 'Error loading hotels.' }));
+                this.setState(state => ({ ...state, hotelsError: 'Error cargando hoteles.' }));
             })
             .then(() => {
                 this.setState(state => ({ ...state, fetchingHotels: false }));
@@ -201,7 +206,7 @@ class BookingFlow extends Component {
         return (
             <div>
                 <p style={{ ...standardMargin }}>
-                    {this.state.hotelSearchResult.totalFilteredResults} results! Some of them:
+                    {this.state.hotelSearchResult.totalFilteredResults} resultados! Algunos de ellos:
                 </p>
 
                 {this.state.hotelSearchResult.results.slice(0, 3).map(result => (
@@ -221,19 +226,19 @@ class BookingFlow extends Component {
         const { getFieldDecorator } = this.props.form;
 
         const locationConfig = {
-            rules: [{ type: 'string', required: true, message: 'Please select place' }],
+            rules: [{ type: 'string', required: true, message: 'Por favor introduce ubicación :)' }],
         };
         const rangeConfig = {
-            rules: [{ type: 'array', required: true, message: 'Please select time' }],
+            rules: [{ type: 'array', required: true, message: 'Por favor introduce fechas :)' }],
         };
         const maxPriceCofig = {
-            rules: [{ type: 'number', required: true, message: 'Please select price' }],
+            rules: [{ type: 'number', required: true, message: 'Por favor instroduce precio :)' }],
         };
         const roomsCofig = {
-            rules: [{ type: 'string', required: true, message: 'Please select rooms' }],
+            rules: [{ type: 'string', required: true, message: 'Por favor instroduce habitaciones :)' }],
         };
         const starRatingConfig = {
-            rules: [{ type: 'number', required: true, message: 'Please select star rating' }],
+            rules: [{ type: 'number', required: true, message: 'Por favor instroduce estrellas :)' }],
         };
 
         return (
@@ -241,11 +246,11 @@ class BookingFlow extends Component {
                 <Header onLogoClick={() => this.props.onGoToView(LANDING)} />
 
                 <main style={{ ...standardPadding, maxWidth: '400px', ...centerViaMargin }}>
-                    <h1>Your booking</h1>
+                    <h1>Tu reserva</h1>
 
                     <Form onSubmit={this.handleSubmit} >
                         <FormItem
-                            label="Location"
+                            label="Ubicación"
                         >
                             {getFieldDecorator('place', locationConfig)(
                                 <AutoComplete
@@ -265,7 +270,7 @@ class BookingFlow extends Component {
                         )}
 
                         <FormItem
-                            label="Dates"
+                            label="Fechas"
                         >
                             {getFieldDecorator('dateRange', rangeConfig)(
                                 <RangePicker
@@ -276,7 +281,7 @@ class BookingFlow extends Component {
                         </FormItem>
 
                         <FormItem
-                            label="Maximum Price"
+                            label="Precio Máximo"
                         >
 
                             {getFieldDecorator('maxPrice', maxPriceCofig)(
@@ -285,20 +290,20 @@ class BookingFlow extends Component {
                         </FormItem>
 
                         <FormItem
-                            label="Rooms for"
+                            label="¿Cuántas personas?"
                         >
                             {getFieldDecorator('rooms', roomsCofig)(
                                 <Select size="large">
-                                    <Option value="1">1 Adult</Option>
-                                    <Option value="2">2 Adults</Option>
+                                    <Option value="1">1 Adulto</Option>
+                                    <Option value="2">2 Adulto</Option>
                                     {/* @TODO, make this smarter 👇 */}
-                                    <Option value="3">Families</Option>
+                                    <Option value="3">Familia</Option>
                                 </Select>
                             )}
                         </FormItem>
 
                         <FormItem
-                            label="Hotel Stars"
+                            label="¿Cuántas estrellas?"
                         >
                             {getFieldDecorator('starRating', starRatingConfig)(
                                 <RadioGroup size="large">
@@ -327,7 +332,7 @@ class BookingFlow extends Component {
                                 onClick={this.handleLoadExampleHotels}
                                 loading={this.state.fetchingHotels}
                             >
-                                Load example hotels
+                                Buscar hoteles candidatos
                             </Button>
 
                             {this.renderHotelResultsPreview()}
@@ -351,7 +356,7 @@ class BookingFlow extends Component {
                                     this.state.hotelSearchResult.totalFilteredResults <= 0
                                 )}
                             >
-                                Submit
+                                Reservar ahora
                             </Button>
                         </div>
                     </Form>

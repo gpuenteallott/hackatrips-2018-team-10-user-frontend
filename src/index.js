@@ -4,5 +4,12 @@ import './index.css';
 import App from './components/App.jsx';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { LocaleProvider } from 'antd';
+import esES from 'antd/lib/locale-provider/es_ES';
+
+ReactDOM.render(
+    <LocaleProvider  locale={esES}>
+        <App />
+    </LocaleProvider>
+, document.getElementById('root'));
 registerServiceWorker();
