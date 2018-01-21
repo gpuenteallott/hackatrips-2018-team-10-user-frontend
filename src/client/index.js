@@ -3,12 +3,11 @@ import omit from 'lodash/omit';
 import uuid from 'uuid/v4';
 
 import {
-    HOTELS_COMBINED_AFFILIATE_ID,
     HOTELS_COMBINED_KEY_VALUE,
     HOTELS_COMBINED_BASE_URL,
     HOTELS_COMBINED_BASE_URL_PUBLIC,
     TRAVEL_BID_GRAPHQL_URL,
-} from '../.env.js';
+} from '../env.js';
 
 /** @var {string} - HotelsCombined needs a persistent session id for a user. */
 const SESSION_ID = uuid();
