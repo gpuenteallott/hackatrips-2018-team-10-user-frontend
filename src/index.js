@@ -7,6 +7,11 @@ import registerServiceWorker from './registerServiceWorker';
 import { LocaleProvider } from 'antd';
 import esES from 'antd/lib/locale-provider/es_ES';
 
+import moment from 'moment';
+import 'moment/locale/es';
+
+moment.locale('es');
+
 ReactDOM.render(
     <LocaleProvider  locale={esES}>
         <App />
