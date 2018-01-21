@@ -12,6 +12,7 @@ export const blur = { filter: 'blur(5px)' };
 
 export const flexCenter = { display: 'flex', alignItems: 'center', justifyContent: 'center' };
 export const flexColumn = { display: 'flex', flexDirection: 'column' };
+export const flexGrow = (grow = 1) => ({ flexGrow: grow });
 
 export const standardPadding = { padding: '0.5rem' };
 export const standardMargin = { margin: '0.5rem' };

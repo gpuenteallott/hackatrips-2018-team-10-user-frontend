@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import uniqBy from 'lodash/uniqBy';
 import debounce from 'lodash/debounce';
 import get from 'lodash/get';
+import moment from 'moment';
 
 import {
     Form,
@@ -91,6 +92,7 @@ class BookingFlow extends Component {
 
         this.setState(state => ({
             ...state,
+            bookingErrors: null,
             bookingSubmitting: true,
         }));
 
@@ -108,7 +110,6 @@ class BookingFlow extends Component {
                             ...state,
                             bookingSubmitting: false,
                         }));
-                        this.props.onGoToView(BOOKING_CONFIRMATION);
                     }
                 },
                 (error) => {
@@ -267,7 +268,10 @@ class BookingFlow extends Component {
                             label="Dates"
                         >
                             {getFieldDecorator('dateRange', rangeConfig)(
-                                <RangePicker  size="large" />
+                                <RangePicker
+                                    size="large"
+                                    ranges={{ Today: [moment(), moment()], 'This Month': [moment(), moment().endOf('month')] }}
+                                />
                             )}
                         </FormItem>
 
