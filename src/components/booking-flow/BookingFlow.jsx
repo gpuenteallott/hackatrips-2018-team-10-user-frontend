@@ -27,15 +27,11 @@ import Header from '../common/Header';
 import {
     standardMargin,
     standardPadding,
-    secondaryBgColor,
-    accentColor,
     flexColumn,
-    logo,
     centerViaMargin,
 } from '../../constants/styles';
 
-import COMPANY_NAME from '../../constants/companyName';
-import { LANDING, BOOKING_COMPLETE } from '../../constants/pages';
+import { LANDING, BOOKING_CONFIRMATION } from '../../constants/pages';
 
 import {
     sendBookingDetails,
@@ -58,6 +54,7 @@ class BookingFlow extends Component {
 
     state = {
         submitting: false,
+        placesError: false,
         autoCompletePlaces: [],
         exampleHotels: [],
         hotelsError: null,
@@ -111,7 +108,7 @@ class BookingFlow extends Component {
                             ...state,
                             bookingSubmitting: false,
                         }));
-                        this.props.onGoToView(BOOKING_COMPLETE);
+                        this.props.onGoToView(BOOKING_CONFIRMATION);
                     }
                 },
                 (error) => {
@@ -128,6 +125,11 @@ class BookingFlow extends Component {
     }
 
     handleLocationSearch = (value) => {
+        this.setState(state => ({
+            ...state,
+            placesError: false,
+        }));
+
         fetchPlaceSuggestions(value)
             .then(places => {
                 console.log('places', places);
@@ -138,6 +140,10 @@ class BookingFlow extends Component {
             })
             .catch((error) => {
                 console.error(error);
+                this.setState(state => ({
+                    ...state,
+                    placesError: true,
+                }));
                 // alert('whoops, error with location service');
             });
     }
@@ -248,6 +254,14 @@ class BookingFlow extends Component {
                                 />
                             )}
                         </FormItem>
+
+                        {this.state.placesError && (
+                            <div className="has-error" style={{ ...standardMargin }}>
+                                <p className="ant-form-explain">
+                                    Error retrieving suggestions
+                                </p>
+                            </div>
+                        )}
 
                         <FormItem
                             label="Dates"
